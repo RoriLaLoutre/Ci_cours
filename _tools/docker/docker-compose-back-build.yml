@@ -30,5 +30,5 @@ services:
     ports:
       - 12000:12000
     depends_on:
-      mono_bdd:
+      cktefrei_bdd:
         condition: service_healthy
