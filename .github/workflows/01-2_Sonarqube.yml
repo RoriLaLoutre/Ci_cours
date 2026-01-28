@@ -6,7 +6,7 @@ on:
 jobs:
   Qualityback:
     runs-on: ubuntu-latest
-    default:
+    defaults:
       run:
         working-directory: ./backend
 
@@ -24,7 +24,7 @@ jobs:
 
   Qualityfront:
     runs-on: ubuntu-latest
-    default:
+    defaults:
       run:
         working-directory: ./frontend
 
