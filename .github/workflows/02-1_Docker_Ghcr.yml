@@ -25,6 +25,7 @@ jobs:
           echo "Docker Registery: ${{ inputs.docker-mode }}"
   
   Build_Push_Docker:
+    runs-on: ubuntu-latest
     steps: 
 
       - name: Log in to Github Container Registery
