@@ -2,19 +2,47 @@ name: 02 - 2 - Staging - Trivy Scan
 
 on:
   workflow_call:
-    inputs: 
-      docker-mode:
-        required: false
-        type: string
-        default: ""
+
+env: 
+  REGISTERY: ghcr.io
+  USERNAME: ${{ github.actor}}
+  IMAGE_NAME: ${{ github.repository }}  #orga/repo
 
 jobs:
-  Display_Data:
+  Trivy_Scan_Back:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Log info
-        run: |
-          echo "Docker Registery: ${{ env.REGISTERY }}"
-          echo "Docker Username: ${{ env.USERNAME }}"
-          echo "Docker Registery: ${{ env.IMAGE_NAME }}"
-          echo "Docker Registery: ${{ inputs.docker-mode }}"
+      - name: Log in to Github Container Registery
+        uses: docker/login-action@v3
+        with: 
+          registry: ${{ env.REGISTERY }}
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Downcase Image Name
+        run: echo "IMAGE_NAME_LOWER=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+      
+      - name: Trivy Back Scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with: 
+          image-ref: ${{ env.REGISTERY }}/${{ env.IMAGE_NAME_LOWER}}-back:latest
+          format: 'table'
+          exit-code: '1'
+          output: 'back-trivy-results.txt'
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH, MEDIUM, LOW'
+          ignore-unfixed: true
+      
+      - name: Upload Back Trivy Scan Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trivy-scan-back-report
+          path: back-trivy-results.txt
+          retention-days: 1
+
+
+      
+      
