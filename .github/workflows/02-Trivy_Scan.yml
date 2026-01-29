@@ -43,8 +43,8 @@ jobs:
           path: back-trivy-results.txt
           retention-days: 1
 
-
   Trivy_Scan_Front:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -69,11 +69,15 @@ jobs:
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           ignore-unfixed: true
       
-      - name: Upload Front Trivy Scan Results
+      - name: Upload front Trivy Scan Results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: trivy-scan-front-report
           path: front-trivy-results.txt
           retention-days: 1
+
+
+
+      
       
