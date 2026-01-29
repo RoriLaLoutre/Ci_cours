@@ -1,5 +1,13 @@
 name: 02 - 2 - Staging - Trivy Scan
 
+on:
+  workflow_call:
+    inputs: 
+      docker-mode:
+        required: false
+        type: string
+        default: ""
+
 jobs:
   Display_Data:
     runs-on: ubuntu-latest
