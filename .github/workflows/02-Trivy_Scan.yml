@@ -1,1 +1,12 @@
 name: 02 - 2 - Staging - Trivy Scan
+
+jobs:
+  Display_Data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log info
+        run: |
+          echo "Docker Registery: ${{ env.REGISTERY }}"
+          echo "Docker Username: ${{ env.USERNAME }}"
+          echo "Docker Registery: ${{ env.IMAGE_NAME }}"
+          echo "Docker Registery: ${{ inputs.docker-mode }}"
