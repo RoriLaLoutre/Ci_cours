@@ -43,9 +43,8 @@ jobs:
           path: back-trivy-results.txt
           retention-days: 1
 
-jobs:
-  Trivy_Scan_Front:
 
+  Trivy_Scan_Front:
     runs-on: ubuntu-latest
 
     steps:
