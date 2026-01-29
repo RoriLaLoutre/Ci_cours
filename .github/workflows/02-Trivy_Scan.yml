@@ -32,7 +32,7 @@ jobs:
           exit-code: '1'
           output: 'back-trivy-results.txt'
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH, MEDIUM, LOW'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           ignore-unfixed: true
       
       - name: Upload Back Trivy Scan Results
@@ -42,7 +42,4 @@ jobs:
           name: trivy-scan-back-report
           path: back-trivy-results.txt
           retention-days: 1
-
-
-      
       
