@@ -14,7 +14,7 @@ jobs:
   
   Build_Push_Docker:
     if: ${{ github.ref_name == 'develop' }} 
-    uses: ./.github/workflows/z_Docker-Ghcr.yml 
+    uses: ./.github/workflows/02-1_Docker_Ghcr.yml 
     secrets: inherit
     permissions:
       contents: read
@@ -22,7 +22,7 @@ jobs:
     with:
       docker-mode: canary
   
-  # Trivy_Scan:
-  #   needs: [Build_Push_Docker]
-  #   uses: ./.github/workflows/02-Trivy_Scan.yml 
-  #   secrets: inherit
+  Trivy_Scan:
+    needs: [Build_Push_Docker]
+    uses: ./.github/workflows/02-Trivy_Scan.yml 
+    secrets: inherit
