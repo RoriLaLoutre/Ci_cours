@@ -77,7 +77,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{env.AZURE_VM_IP}}
-          port: 22
+          port: ${{secrets.AZURE_PORT}} 
           username: ${{secrets.AZURE_VM_LOGIN}}
           password: ${{secrets.AZURE_VM_PASSWORD}}
           script: |
