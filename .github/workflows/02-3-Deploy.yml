@@ -34,7 +34,7 @@ jobs:
           template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/refs/heads/master/quickstarts/microsoft.compute/vm-simple-linux/azuredeploy.json
           parameters: |
             adminUsername=${{secrets.AZURE_VM_LOGIN}}
-            adminPasswordOrKey=${{ secrets.AZURE_VM_PASSWORD }}
+            adminPassword=${{ secrets.AZURE_VM_PASSWORD }}
             vmName="ci_class-IM-VM"
             location=${{env.ResourceGroupLocation}}
             vmSize="Standard_B2s"
