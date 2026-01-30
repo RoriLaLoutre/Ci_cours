@@ -24,7 +24,7 @@ jobs:
   
   Trivy_Scan:
     needs: [Build_Push_Docker]
-    uses: ./.github/workflows/02-Trivy_Scan.yml 
+    uses: ./.github/workflows/02-2-Trivy_Scan.yml 
     secrets: inherit
     permissions:
       contents: read
