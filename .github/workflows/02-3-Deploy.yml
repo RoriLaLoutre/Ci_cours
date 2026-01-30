@@ -70,8 +70,8 @@ jobs:
         with:
           inlineScript: |
             #!/bin/bash
-            az vm show -d -g ${{env.ResourceGroupName}} -n ci_class-IM-VM --query publicIps -o tsv
-            echo "AZURE_VM_IP=$(az vm show -d -g ${{env.ResourceGroupName}} -n ci_class-IM-VM --query publicIps -o tsv)" >> $GITHUB_ENV  
+            az vm show -d -g ${{env.ResourceGroupName}} -n ci-class-IM-VM --query publicIps -o tsv
+            echo "AZURE_VM_IP=$(az vm show -d -g ${{env.ResourceGroupName}} -n ci-class-IM-VM --query publicIps -o tsv)" >> $GITHUB_ENV  
 
       - name: Install Docker on VM
         uses: appleboy/ssh-action@v1.0.3
